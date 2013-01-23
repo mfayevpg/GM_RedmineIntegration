@@ -1,0 +1,9 @@
+/**
+ * User: mfaye
+ * Date: 23/01/13
+ * Time: 10:51
+ */
+var redmine = {
+    redmineAPIKey: "your API KEY",
+    redmineUrl: 'url to redmine'
+}
