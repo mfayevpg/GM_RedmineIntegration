@@ -80,7 +80,6 @@ $(document).ready(function () {
 
     var regExp = new RegExp("[refs|fixes] ?#?([0-9]+)");
 //    getMainIssueData($('.discussion-topic-title').text().replace('Point ', ''));
-    var generatedIdList = [];
     var issueObjectHash = {};
     issueObjectHash.keyList = [];
     var nbSpottedIssues = 0;
@@ -125,15 +124,15 @@ $(document).ready(function () {
                 for(var j = 0; j < jQueryWrapperListLength; j++){
                     var currentJQuery = issueObjectHash[currentKey].jQueryWrapperList[j];
                     var linkId = 'closeDemand_' + currentKey + '_' + j;
-                    var needPrepend = (issueObjectHash[currentKey].issueObject.status.id == 16);
-                    needPrepend = (needPrepend || (issueObjectHash[currentKey].issueObject.status.id != 5));
-                    if(needPrepend){
-                        var linkHtml = '<span style="font-size: 6px; float: left; width: 70px;">' + issueObjectHash[currentKey].issueObject.status.name + '</span>';
+                        var linkHtml = '<span style="font-size: 6px; float: left; width: 70px;">';
                         if(issueObjectHash[currentKey].issueObject.status.id == 16){
-                            linkHtml = '<a href="#" id="' + linkId + '" alt="Fermer la demande" title="Fermer la demande"><img id="img' + linkId + '" src="' + load + '"/></a>&nbsp;';
+                            linkHtml += '<a href="#" id="' + linkId + '" alt="Fermer la demande" title="Fermer la demande"><img id="img' + linkId + '" src="' + closeImg + '"/></a>&nbsp;';
+                        }else{
+                            linkHtml += issueObjectHash[currentKey].issueObject.status.name;
                         }
+                        linkHtml += '</span>';
                         currentJQuery.parent().prepend(linkHtml);
-                    }else{
+                    if(issueObjectHash[currentKey].issueObject.status.id == 5){
                         currentJQuery.css('text-decoration', 'line-through');
                     }
                 }
