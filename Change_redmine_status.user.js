@@ -13,8 +13,9 @@ var closeImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/
 var loadingGif = 'data:image/gif;base64,R0lGODlhLQAmAOZPAP///0VFRUSlTfj8+f3+/UinUE6qV1mvYd3v38LixVuwY/v9/KbUq225dODw4uTy5fX69er169rt22m3cV+yZ37BhKrWrvH48snly53Qof7//szmzne+fpLLmLHZtIvHkUuoU7vevqPTqM/o0vv9+/z+/HS8eo/JlJXMmsXjyPn8+Wa1bXC6d/f7+Ljdu/7+/r7gwoXEirTbuPz+/WO0avb69vb793q/gYjGjvz9/PP59O737/r9+t/v4K7YsqDRpKXUqbXcuZrPn2i2b3O7eubz5/n8+vX69vj8+M3n0Pr9+9zu3Y/JlVKsWtHp1P///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFAABPACwAAAAALQAmAAAH/4AAgoOEhYaHiImKi4yNjo+QkYIOMDIYEZKZAwwHAp6eEwmZjw4KngYcJzGdAhUDo4sOIAIFIguEGzQCDa+whwOmBwi/NwIdvocMtMOIAxQFzMiDpjiLCcbSgxKeI4sLBhTZgtcCF4wNArfZIZ69iibl4hieD4wKBeIAEZ4eiw+7+QBMEHBAHaIPAkQETOHpQ6JrBiAEBFDBEwdMhTwUEBBiIoABLE5lGCFBAoMVnjJ4HGRh1qdPBlysJPQABSsBExhInMmzp8+fQIMKChCJKFFkRx8lRVooQFKnR6ECMOp0kNRGS6MSMjp0qlevWrFu7Tq1qlauYMkyytr1bNuvaBeXKoJqNupVqXGHmk3bM6zQsn8DC/YVCAAh+QQFCgBPACwWAAMABwAFAAAHE4AIAIOEFoSEG4cAGooAQIo+AoEAIfkEBQoATwAsGwAGAAUABgAABw2AADkAhCqEh4iJioiBACH5BAUKAE8ALBsADAAFAAYAAAcOgACCg4SFhQ6EBRw8goEAIfkEBQoATwAsFwAQAAcABQAABxGAAIIAJIOGAAQRhwAVixSLgQAh+QQFCgBPACwOAA4ACgAHAAAHFoANPzsAhYaHiImKhwSLM4clhxCLioEAIfkEBQoATwAsAAAAAAEAAQAABwOAT4EAIfkEBQoATwAsDQAIAAQABwAABxKATylPhAAPQQQAiouMjYo2LYEAIfkEBQoATwAsDgAEAAYABgAABxaAAIIEACaDghYAL4IAPBqMkJE6JIyBACH5BAUKAE8ALBMAAwADAAQAAAcLgAAABIIANYIlgoEAIfkEBQoATwAsFgADAAcABQAABx2AMhgRT4VPAogTCYUnMQeIFUqGGzQNPIZPRkdPgQAh+QQFCgBPACwaAAUABgAHAAAHH4BPTwOCggINhIM3Ah2FAxQFCIUJjIULBhSFT0InBIEAIfkEBQoATwAsGwALAAUABwAABx+AT08NAguCJgIXggoFgg8CDYIfAiJPLSwGEIJPPYKBACH5BAUKAE8ALBcAEAAHAAUAAAccgACCAAkCBoMeBQIhKgwrAgIZgk2GLoMoDBCDgQAh+QQFCgBPACwSABEABwAEAAAHF4BPSE+EhAtDGSMSEk8eAo+QRSgHkBOBACH5BAUKAE8ALA4ADgAGAAcAAAcigE87S0+FTAIHC4UpAgIfhU8VjRwRTwMsjQaQFiCQhQ9PgQAh+QQFCgBPACwNAAkABAAHAAAHGoBPRD4DEgICTgmHFyGHAxiHDxGHHk8TT0+BACH5BAUKAE8ALA4ABAAGAAcAAAchgE+CAymCTw4KBRGHIAIFSQMKAgcITwyOlU+SOIaCI4aBADs=';
 var redmineIcon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAPxQTFRFAAAA/wAAfwAAAAAA/wAA5AAM4wAM4wAM5AAMvwAA3AcA3QsA3QoA4gAL4wAN4wAM3QoA3AsA4AoA3AoA3AsA3AsA4gAF4wAL5AAL3AkA3QsA3QsA4wkAzAAA/wAA3goA3AsA/wAA3QsA3QsAxAAAygAAywAAzAAA4QcA2wUAywAAywAAzAAAzQAAzAAAygAAygAAzAAAvwAAzAAAywAAzAAA1AAAywAAywAAzQAAoQAAoAAApgAAyQAAxgAAoQAAoQAAoAAAoQAAoQAAoQAAoQAAogAAogAAogAAogAAoAAAogAAoAAAoQAAoQAA3QwA3QsAzAAAogAA////Ghi28QAAAE90Uk5TAAICAQS41dOpBEnrNY3VbUvmMTP76TZwcTv57xsFA4NgAYn7DXXkaSIxfPJQOOEiTboUfe7WBvvebKxsFC82HnU29oCWk/5rjMaH01FyvOgmDFMAAAABYktHRFN6Zx0GAAAACXBIWXMAAABIAAAASABGyWs+AAAAlElEQVQY02NgwAEYmZB5zCysbOwcDJwwPhc3Dy8fH7+AoBCELyziLyomLiEp5S8tA+LLyskHKABpRSVlBZAmFVU1dQ2wSkVNLW0dBgZdvcBAfYheg8BAQwYGI2MTU6jhZuYWlgwMVtY2tjDr7OwdHBmcgoKcYQIuQUGuDG5BQe4wAY+gIE8GL29vH5iAr7e3HwPpAAC4nBIFtEJwqAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMi0wOS0xOVQxNTo1MDo1NiswMjowMKD5w/0AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTEtMDMtMTZUMjI6MzU6NDErMDE6MDAPFRk1AAAAAElFTkSuQmCC';
 
-function closeDemand(currentDemand, currentHTMLObject) {
-    var url = redmine.url + 'issues/' + currentDemand + '.json';
+function closeDemand(data) {
+    var currentDemand = data.issueObject;
+    var url = redmine.url + 'issues/' + currentDemand.id + '.json';
     GM_xmlhttpRequest(
         {
             method: "PUT",
@@ -26,8 +27,11 @@ function closeDemand(currentDemand, currentHTMLObject) {
             },
             onload: function (response) {
                 if (response.status == 200) {
-                    currentHTMLObject.parent().css('text-decoration', 'line-through')
-                    currentHTMLObject.hide();
+                    $('img[id^="imgcloseDemand_' + currentDemand.id + '"]').remove();
+                    var jQueryElementListLength = data.jQueryWrapperList.length;
+                    for(var i = 0; i < jQueryElementListLength; i++){
+                        data.jQueryWrapperList[i].css('text-decoration', 'line-through');
+                    }
                 }
             }
         });
@@ -41,7 +45,6 @@ function getRedmineStatus(issueId) {
             method: "GET",
             url: url,
             onload: function (response) {
-//                console.log(response.responseText);
                 issueObject = eval('(' + response.responseText + ')');
                 issueObject = issueObject.issue;
                 var inputId = '#point_' + issueObject.id;
@@ -129,7 +132,7 @@ $(document).ready(function () {
                     linkHtml += '<a href="' + redmine.url + 'issues/' + currentKey + '" alt="Voir la demande dans Redmine" title="Voir la demande dans Redmine" target="_blank"><img src="' + redmineIcon + '" /></a>&nbsp;';
                     linkHtml += '<span style="float: right;">';
                     if (issueObjectHash[currentKey].issueObject.status.id == 16) {
-                        linkHtml += '<a href="#" id="' + linkId + '" alt="Fermer la demande" title="Fermer la demande"><img id="img' + linkId + '" src="' + closeImg + '"/></a>&nbsp;';
+                        linkHtml += '<a href="#" id="' + linkId + '" alt="Fermer la demande" title="Fermer la demande" rel="' + currentKey + '"><img id="img' + linkId + '" src="' + closeImg + '"/></a>&nbsp;';
                     } else {
                         linkHtml += issueObjectHash[currentKey].issueObject.status.name;
                     }
@@ -147,9 +150,12 @@ $(document).ready(function () {
 
 
     console.log('Nombre de points vus dans le merge : [' + issueObjectHash.keyList.length + ']');
-    $('a[id^=closeDemand_]').click(function (event) {
+    $(document).on('click', 'a[id^="closeDemand_"]', {}, function (event) {
         event.preventDefault();
-        closeDemand($(this).attr('rel'), $(this));
+        $('img[id^="imgcloseDemand_' + $(this).attr('rel') + '"]').each(function(){
+            $(this).attr('src', loadingGif);
+        });
+        closeDemand(issueObjectHash[$(this).attr('rel')]);
     });
     $('span[class="commit-ref js-selectable-text css-truncate expandable"]').each(function () {
         var cleanBranchName = $(this).text().replace(/\s+/g, '');
