@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name        Change redmine status
+// @downloadURL https://github.com/mfayevpg/GM_RedmineIntegration/blob/master/Change_redmine_status.user.js
 // @namespace   mfaye@voyageprive.com
 // @description Change task status from github into redmine
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
