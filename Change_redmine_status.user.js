@@ -10,7 +10,7 @@
 // @grant       GM_setValue
 // @grant       GM_registerMenuCommand
 // @grant       GM_xmlhttpRequest
-// @version     0.3
+// @version     0.4
 // ==/UserScript==
 
 /**
@@ -83,7 +83,7 @@ function promptAndChangeStoredValue(targVar, userPrompt, setValVarName) {
     GM_setValue(setValVarName, encryptAndStore(targVar));
 }
 
-function getRedmineHeaderMap(){
+function getRedmineHeaderMap() {
     return {
         "Content-Type": "application/json",
         "X-Redmine-API-Key": redmineApiKey
@@ -101,7 +101,7 @@ function closeDemand(issueId, callback) {
             onload: function (response) {
                 if (response.status == 200) {
                     callback(issueId);
-                }else{
+                } else {
                     console.error('An error occured when calling API to close issue : ', response);
                 }
             }
@@ -112,7 +112,7 @@ var issueCache = {};
 
 function getRedmineStatus(issueId, callback) {
     var url = redmineUrl + 'issues/' + issueId + '.json';
-    if(!issueCache[issueId]){
+    if (!issueCache[issueId]) {
         GM_xmlhttpRequest(
             {
                 method: "GET",
@@ -128,7 +128,7 @@ function getRedmineStatus(issueId, callback) {
                     }
                 }
             });
-    }else{
+    } else {
         callback(issueCache[issueId]);
     }
 }
@@ -151,7 +151,7 @@ function getMainIssueData(issueId, callback) {
         });
 }
 
-function getRedmineIssueUrl(issueId){
+function getRedmineIssueUrl(issueId) {
     return redmineUrl + 'issues/' + issueId;
 }
 
@@ -177,9 +177,9 @@ $(document).ready(function () {
             childrenHtml += '<ul style="margin-left: 15px;">';
             for (var i = 0; i < retrievedIssue.children.length; i++) {
                 var currentChildIssue = retrievedIssue.children[i];
-                childrenHtml += '<li id="childIssue_'+ currentChildIssue.id + '">' + currentChildIssue.id + ' : ';
+                childrenHtml += '<li id="childIssue_' + currentChildIssue.id + '">' + currentChildIssue.id + ' : ';
                 childrenHtml += '   <a href="' + getRedmineIssueUrl(currentChildIssue.id) + '" target="_blank">' + currentChildIssue.subject + '</a>';
-                getRedmineStatus(currentChildIssue.id, function(currentIssue){
+                getRedmineStatus(currentChildIssue.id, function (currentIssue) {
                     $('#childIssue_' + currentIssue.id).append('&nbsp;&#8594;&nbsp;' + currentIssue.status.name);
                 });
                 childrenHtml += '</li>';
@@ -189,13 +189,11 @@ $(document).ready(function () {
         }
     });
 
-    var nbSpottedIssues = 0;
     $('a[class="message"]:visible').each(function () {
         var currentMessage = $(this).text();
         var result = regExp.exec(currentMessage);
         if (result != null && result.length == 2) {
             if (typeof(issueObjectHash[result[1]]) == 'undefined') {
-                nbSpottedIssues++;
                 issueObjectHash[result[1]] = [$(this)];
             } else {
                 issueObjectHash[result[1]].push($(this));
@@ -247,7 +245,7 @@ $(document).on('click', 'a[id^="close_"]', {}, function (event) {
     $('img[id^="img_' + clickedIssueId + '"]').each(function () {
         $(this).attr('src', loadingGif);
     });
-    closeDemand(clickedIssueId, function(issueId){
+    closeDemand(clickedIssueId, function (issueId) {
         $('img[id^="img_' + issueId + '"]').remove();
         var jQueryElementListLength = issueObjectHash[issueId].length;
         for (var i = 0; i < jQueryElementListLength; i++) {
@@ -256,7 +254,20 @@ $(document).on('click', 'a[id^="close_"]', {}, function (event) {
     });
 
 });
-$('span.css-truncate-target').each(function () {
+$('span.commit-ref.current-branch.css-truncate.js-selectable-text.expandable').each(function () {
     var cleanBranchName = $(this).text().replace(/\s+/g, '');
     $(this).wrapInner('<a href="https://github.com/vpg/dev_vp_bong/tree/' + cleanBranchName + '" target="_blank"></a>');
 });
+
+//New Pull request page
+var $span = $('span.mini-icon.mini-icon-arr-left.action-indicator');
+if ($span.length > 0) {
+    var branch1 = $('div.select-menu.js-menu-container.js-select-menu.pull-range-base-branch-container > span > span').text();
+    var branch2 = $('div.select-menu.js-menu-container.js-select-menu.pull-range-head-branch-container > span > span').text();
+    if(branch1 != branch2){
+        var repo = $('div.select-menu.js-menu-container.js-select-menu.pull-range-base-repo-container > span > span').text();
+        repo = repo.replace('vpg/', '');
+        var pullRequestLink = 'https://github.com/vpg/' + repo + '/pull/new/vpg:' + branch2 + '...vpg:' + branch1;
+        $('div.pull-heading').append('<a href="' + pullRequestLink + '">Inverser la pull request</a>');
+    }
+}
